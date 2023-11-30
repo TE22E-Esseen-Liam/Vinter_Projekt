@@ -29,4 +29,14 @@ class Program
         Console.WriteLine("Press any key to exit game");
         Console.ReadKey();
     }
-}
+
+    static void DisplayStats(string character, int hp)
+    {
+        Console.WriteLine($"{character} {hp}HP");
+    }
+
+    static int GenerateRandomDamage()
+    {
+        Random generator = new Random();
+        return generator.Next(5, 15);
+    }
