@@ -17,3 +17,16 @@ class Program
 
             int idmg = GenerateRandomDamage();
             int tdmg = GenerateRandomDamage();
+
+            ironmanHP -= idmg;
+            thanosHP -= tdmg;
+
+            Console.Clear();
+        }
+
+        DisplayResult(ironmanHP, thanosHP);
+
+        Console.WriteLine("Press any key to exit game");
+        Console.ReadKey();
+    }
+}
