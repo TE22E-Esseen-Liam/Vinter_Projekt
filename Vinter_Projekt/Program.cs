@@ -11,3 +11,9 @@ class Program
         {
             DisplayStats("Ironman", ironmanHP);
             DisplayStats("Thanos", thanosHP);
+
+            Console.WriteLine("Press [ENTER] to continue");
+            Console.ReadLine();
+
+            int idmg = GenerateRandomDamage();
+            int tdmg = GenerateRandomDamage();
