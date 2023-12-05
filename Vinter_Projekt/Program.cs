@@ -4,26 +4,22 @@ class Program
 {
     static void Main()
     {
+        while (true)
+        {
+            PlayGame();
 
-       while (true)
-       {
+            Console.WriteLine("Press [R] to restart game or press any other button to exit");
+            if (Console.ReadKey().Key != ConsoleKey.R)
+            {
+                break;
+            }
 
-          PlayGame();
+            Console.Clear();
+        }
+    }
 
-          Console.WriteLine("Press [R] to restart game or press any other button to exit");
-          if(Console.ReadLine().Key != ConsoleKey.R)
-          {
-
-           break;
-
-          }
-
-        Console.Clear();
-       }
-    
     static void PlayGame()
     {
-
         int batmanHP = 100;
         int jokerHP = 100;
 
@@ -35,17 +31,17 @@ class Program
             Console.WriteLine("Press [ENTER] to continue");
             Console.ReadLine();
 
-            int idmg = GenerateRandomDamage();
-            int tdmg = GenerateRandomDamage();
+            int batmanDamage = GenerateRandomDamage();
+            int jokerDamage = GenerateRandomDamage();
 
-            batmanHP -= idmg;
-            jokerHP -= tdmg;
+            batmanHP -= jokerDamage;
+            jokerHP -= batmanDamage;
 
             Console.Clear();
         }
 
-            DisplayResult(batmanHP, jokerHP);
-            }
+        DisplayResult(batmanHP, jokerHP);
+    }
 
     static void DisplayStats(string character, int hp)
     {
@@ -57,6 +53,7 @@ class Program
         Random generator = new Random();
         return generator.Next(5, 15);
     }
+
     static void DisplayResult(int batmanHP, int jokerHP)
     {
         if (batmanHP <= 0)
