@@ -4,13 +4,33 @@ class Program
 {
     static void Main()
     {
-        int ironmanHP = 100;
-        int thanosHP = 100;
 
-        while (ironmanHP > 0 && thanosHP > 0)
+       while (true)
+       {
+
+          PlayGame();
+
+          Console.WriteLine("Press [R] to restart game or press any other button to exit");
+          if(Console.ReadLine().Key != ConsoleKey.R)
+          {
+
+           break;
+
+          }
+
+        Console.Clear();
+       }
+    
+    static void PlayGame()
+    {
+
+        int batmanHP = 100;
+        int jokerHP = 100;
+
+        while (batmanHP > 0 && jokerHP > 0)
         {
-            DisplayStats("Ironman", ironmanHP);
-            DisplayStats("Thanos", thanosHP);
+            DisplayStats("batman", batmanHP);
+            DisplayStats("Thanos", jokerHP);
 
             Console.WriteLine("Press [ENTER] to continue");
             Console.ReadLine();
@@ -18,17 +38,14 @@ class Program
             int idmg = GenerateRandomDamage();
             int tdmg = GenerateRandomDamage();
 
-            ironmanHP -= idmg;
-            thanosHP -= tdmg;
+            batmanHP -= idmg;
+            jokerHP -= tdmg;
 
             Console.Clear();
         }
 
-        DisplayResult(ironmanHP, thanosHP);
-
-        Console.WriteLine("Press any key to exit game");
-        Console.ReadKey();
-    }
+            DisplayResult(batmanHP, jokerHP);
+            }
 
     static void DisplayStats(string character, int hp)
     {
@@ -40,3 +57,19 @@ class Program
         Random generator = new Random();
         return generator.Next(5, 15);
     }
+    static void DisplayResult(int batmanHP, int jokerHP)
+    {
+        if (batmanHP <= 0)
+        {
+            Console.WriteLine("You lost to The Joker");
+        }
+        else if (jokerHP <= 0)
+        {
+            Console.WriteLine("You lost to The Dark Knight");
+        }
+        else
+        {
+            Console.WriteLine("It's a draw... try again");
+        }
+    }
+}
