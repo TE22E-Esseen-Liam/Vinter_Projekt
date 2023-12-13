@@ -2,6 +2,21 @@
 
 class Program
 {
+    static void Start()
+    {
+        while (true)
+        {
+            Console.Clear();
+            Console.WriteLine("Welcome to My Combat Game");
+            Console.WriteLine("Press [S] to play");
+
+            if (Console.ReadKey().Key != ConsoleKey.S)
+            
+
+            Console.Clear();
+        }
+    }
+
     static void Main()
     {
         while (true)
@@ -11,7 +26,8 @@ class Program
             Console.WriteLine("Press [R] to restart game or press any other button to exit");
             if (Console.ReadKey().Key != ConsoleKey.R)
             {
-                break;
+    
+break;
             }
 
             Console.Clear();
@@ -20,24 +36,44 @@ class Program
 
     static void PlayGame()
     {
-        int batmanHP = 100;
-        int jokerHP = 100;
+        int batmanHP = 1000;
+        int jokerHP = 1000;
+
+         bool doubleDamage = false;
 
         while (batmanHP > 0 && jokerHP > 0)
         {
-            DisplayStats("batman", batmanHP);
-            DisplayStats("Thanos", jokerHP);
+            DisplayStats("Batman", batmanHP);
+            DisplayStats("Joker", jokerHP);
 
             Console.WriteLine("Press [ENTER] to continue");
             Console.ReadLine();
 
             int batmanDamage = GenerateRandomDamage();
             int jokerDamage = GenerateRandomDamage();
+            
+            if (doubleDamage)
+            {
+                jokerDamage *= 2; // Double damage for Joker
+                Console.WriteLine("Joker deals double damage!");
+                doubleDamage = false;
+            }
+
+            int jokerAbility = GenerateRandomDamage();
 
             batmanHP -= jokerDamage;
             jokerHP -= batmanDamage;
 
-            Console.Clear();
+                // Display damage taken in each round
+            Console.WriteLine($"Batman takes {jokerDamage} damage!");
+            Console.WriteLine($"Joker takes {batmanDamage} damage!");
+
+        if (jokerAbility > 150)
+        {
+            doubleDamage = true;
+            Console.WriteLine("Joker is preparing for a double damage attack!");
+        }
+        Console.Clear();   
         }
 
         DisplayResult(batmanHP, jokerHP);
@@ -51,8 +87,11 @@ class Program
     static int GenerateRandomDamage()
     {
         Random generator = new Random();
-        return generator.Next(5, 15);
+        return generator.Next(5, 200);
+
     }
+
+    
 
     static void DisplayResult(int batmanHP, int jokerHP)
     {
@@ -62,7 +101,7 @@ class Program
         }
         else if (jokerHP <= 0)
         {
-            Console.WriteLine("You lost to The Dark Knight");
+            Console.WriteLine("You lost to Batman");
         }
         else
         {
