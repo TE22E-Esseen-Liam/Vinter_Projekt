@@ -12,7 +12,7 @@ class Program
         while (key.Key != ConsoleKey.S && key.Key != ConsoleKey.A)
         {
             Console.Clear();
-            Console.WriteLine("Welcome to My Combat Game");
+            Console.WriteLine("Welcome to Batman vs Joker");
             Console.WriteLine("Press [S] to start as the Weak Batman or [A] to start as The powerful Joker");
             key = Console.ReadKey();
         }
@@ -59,10 +59,30 @@ break;
             {
                 player2Damage *= 2; // Double damage for Player 2
                 Console.WriteLine("The powerful Joker deals double damage!");
+                Console.WriteLine("");
                 doubleDamage = false;
             }
 
             int player2Ability = GenerateRandomDamage();
+
+            int player1GadgetAttack = GenerateRandomDamage();
+
+            // Check if Batman uses his Gadget Attack
+            if (player1GadgetAttack > 120)
+            {
+            int gadgetDamage = GenerateRandomDamage();
+            player2HP -= gadgetDamage;
+
+            Console.WriteLine("The weak Batman uses his Gadget Attack and deals additional damage!");
+            Console.WriteLine("");
+            Console.WriteLine($"The powerful Joker takes {gadgetDamage} extra damage!");
+
+            DisplayStats("The weak Batman", player1HP);
+            DisplayStats("The powerful Joker", player2HP);
+  
+            Console.WriteLine("Press [ENTER] to continue");
+            Console.ReadLine();
+            }
 
             player1HP -= player2Damage;
             player2HP -= player1Damage;
@@ -70,14 +90,17 @@ break;
             Console.Clear();
 
             // Display damage taken in each round
+            Console.WriteLine("");
             Console.WriteLine($"The weak Batman takes {player2Damage} damage!");
             Console.WriteLine($"The powerful Joker takes {player1Damage} damage!");
+            Console.WriteLine("");
 
             if (player2Ability > 150)
             {
                 doubleDamage = true;
                 Console.WriteLine("");
                 Console.WriteLine("The powerful Joker is preparing for a double damage attack!");
+                Console.WriteLine("");
             }
         }
 
