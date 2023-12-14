@@ -4,29 +4,32 @@ class Program
 {
     static void Start()
     {
-        while (true)
+        Console.Clear();
+        Console.WriteLine("Welcome to My Combat Game");
+        Console.WriteLine("Press [S] to start as the Weak Batman or [A] to start as The powerful Joker");
+
+        ConsoleKeyInfo key = Console.ReadKey();
+        while (key.Key != ConsoleKey.S && key.Key != ConsoleKey.A)
         {
             Console.Clear();
             Console.WriteLine("Welcome to My Combat Game");
-            Console.WriteLine("Press [S] to play");
-
-            if (Console.ReadKey().Key != ConsoleKey.S)
-            
-
-            Console.Clear();
+            Console.WriteLine("Press [S] to start as the Weak Batman or [A] to start as The powerful Joker");
+            key = Console.ReadKey();
         }
+
+        Console.Clear();
+        PlayGame(key.Key);
     }
 
     static void Main()
     {
         while (true)
         {
-            PlayGame();
+            Start();
 
-            Console.WriteLine("Press [R] to restart game or press any other button to exit");
+            Console.WriteLine("Press [R] to restart the game or press any other button to exit");
             if (Console.ReadKey().Key != ConsoleKey.R)
             {
-    
 break;
             }
 
@@ -34,74 +37,75 @@ break;
         }
     }
 
-    static void PlayGame()
+    static void PlayGame(ConsoleKey playerKey)
     {
-        int batmanHP = 1000;
-        int jokerHP = 1000;
+        int player1HP = 1000;
+        int player2HP = 1000;
 
-         bool doubleDamage = false;
+        bool doubleDamage = false;
 
-        while (batmanHP > 0 && jokerHP > 0)
+        while (player1HP > 0 && player2HP > 0)
         {
-            DisplayStats("Batman", batmanHP);
-            DisplayStats("Joker", jokerHP);
+            DisplayStats("The weak Batman", player1HP);
+            DisplayStats("The powerful Joker", player2HP);
 
             Console.WriteLine("Press [ENTER] to continue");
             Console.ReadLine();
 
-            int batmanDamage = GenerateRandomDamage();
-            int jokerDamage = GenerateRandomDamage();
-            
+            int player1Damage = GenerateRandomDamage();
+            int player2Damage = GenerateRandomDamage();
+
             if (doubleDamage)
             {
-                jokerDamage *= 2; // Double damage for Joker
-                Console.WriteLine("Joker deals double damage!");
+                player2Damage *= 2; // Double damage for Player 2
+                Console.WriteLine("The powerful Joker deals double damage!");
                 doubleDamage = false;
             }
 
-            int jokerAbility = GenerateRandomDamage();
+            int player2Ability = GenerateRandomDamage();
 
-            batmanHP -= jokerDamage;
-            jokerHP -= batmanDamage;
+            player1HP -= player2Damage;
+            player2HP -= player1Damage;
 
-                // Display damage taken in each round
-            Console.WriteLine($"Batman takes {jokerDamage} damage!");
-            Console.WriteLine($"Joker takes {batmanDamage} damage!");
+            Console.Clear();
 
-        if (jokerAbility > 150)
-        {
-            doubleDamage = true;
-            Console.WriteLine("Joker is preparing for a double damage attack!");
+            // Display damage taken in each round
+            Console.WriteLine($"The weak Batman takes {player2Damage} damage!");
+            Console.WriteLine($"The powerful Joker takes {player1Damage} damage!");
+
+            if (player2Ability > 150)
+            {
+                doubleDamage = true;
+                Console.WriteLine("");
+                Console.WriteLine("The powerful Joker is preparing for a double damage attack!");
+            }
         }
-        Console.Clear();   
-        }
 
-        DisplayResult(batmanHP, jokerHP);
+        DisplayResult(player1HP, player2HP);
     }
 
-    static void DisplayStats(string character, int hp)
+    static void DisplayStats(string player, int hp)
     {
-        Console.WriteLine($"{character} {hp}HP");
+        Console.WriteLine($"{player} {hp}HP");
     }
 
     static int GenerateRandomDamage()
     {
         Random generator = new Random();
         return generator.Next(5, 200);
-
     }
 
-    
-
-    static void DisplayResult(int batmanHP, int jokerHP)
+    static void DisplayResult(int player1HP, int player2HP)
     {
-        if (batmanHP <= 0)
+        Console.Clear();
+
+        if (player1HP <= 0)
         {
-            Console.WriteLine("You lost to The Joker");
+            Console.WriteLine("Batman lost to The powerful Joker... unfortunately the Joker was to powerful");
         }
-        else if (jokerHP <= 0)
+        else if (player2HP <= 0)
         {
-            Console.WriteLine("You lost to Batman");
+            Console.WriteLine("The Joker lost to Batman... Unlucky");
         }
         else
         {
