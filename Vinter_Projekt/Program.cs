@@ -104,7 +104,7 @@ break;
             }
         }
 
-        DisplayResult(player1HP, player2HP);
+         DisplayResult(player1HP, player2HP);
     }
 
     static void DisplayStats(string player, int hp)
