@@ -2,7 +2,7 @@
 
 class Program
 {
-    static void Start()
+    static void Start()    //start av game
     {
         Console.Clear();
         Console.WriteLine("Welcome to Batman vs Joker");
@@ -20,13 +20,13 @@ class Program
             key = Console.ReadKey();
         }
 
-        Console.Clear();
+        Console.Clear();  //ifall man tryckt på S, A så byts till PlayGame
         PlayGame(key.Key);
     }
 
     static void Main()
     {
-        while (true)
+        while (true)  //when game is over this is true
         {
             Start();
 
@@ -40,12 +40,12 @@ break;
         }
     }
 
-    static void PlayGame(ConsoleKey playerKey)
+    static void PlayGame(ConsoleKey playerKey)  //This is the game code
     {
-        int player1HP = 1000;
-        int player2HP = 1000;
+        int player1HP = 1000;  //Batman HP
+        int player2HP = 1000;  //Joker HP
 
-        bool doubleDamage = false;
+        bool doubleDamage = false;  //True or false for DD
 
         while (player1HP > 0 && player2HP > 0)
         {
@@ -125,7 +125,7 @@ break;
     {
         Console.Clear();
 
-        if (player1HP <= 0)
+        if (player1HP <= 0)    //End results 
         {
             Console.WriteLine("Batman lost to The powerful Joker... unfortunately the Joker was to powerful");
         }
