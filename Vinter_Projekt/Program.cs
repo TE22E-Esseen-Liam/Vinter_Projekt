@@ -5,15 +5,18 @@ class Program
     static void Start()
     {
         Console.Clear();
-        Console.WriteLine("Welcome to My Combat Game");
+        Console.WriteLine("Welcome to Batman vs Joker");
+        Console.WriteLine("");
+
+        for(int i=0; i<1; i++)
+        {
         Console.WriteLine("Press [S] to start as the Weak Batman or [A] to start as The powerful Joker");
+        }
 
         ConsoleKeyInfo key = Console.ReadKey();
         while (key.Key != ConsoleKey.S && key.Key != ConsoleKey.A)
         {
             Console.Clear();
-            Console.WriteLine("Welcome to Batman vs Joker");
-            Console.WriteLine("Press [S] to start as the Weak Batman or [A] to start as The powerful Joker");
             key = Console.ReadKey();
         }
 
