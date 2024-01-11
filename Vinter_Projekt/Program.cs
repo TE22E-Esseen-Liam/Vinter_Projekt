@@ -8,6 +8,12 @@ class Program
         Console.WriteLine("Welcome to Batman vs Joker");
         Console.WriteLine("");
 
+        string playerName;
+        Console.WriteLine("Enter your name:");
+        playerName = Console.ReadLine();
+
+        Console.WriteLine($"Hello {playerName} ");
+
         for(int i=0; i<1; i++)
         {
         Console.WriteLine("Press [S] to start as the Weak Batman or [A] to start as The powerful Joker");
