@@ -1,16 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
+
 class Program
 {
-
-    //Create a list
-    static List<string> gameResults = new List<string>();
 
     //start of the game
     static void Start()
     {
         //Welcome message
-        Console.Clear();
         Console.WriteLine("Welcome to Batman vs Joker");
         Console.WriteLine("");
 
@@ -23,16 +19,16 @@ class Program
 
 
         //Start as Batman or Joker
-        for(int i=0; i<1; i++)
+        for (int i = 0; i < 1; i++)
         {
-        Console.WriteLine("Press [S] to start as the Batman or [A] to start as The Joker");
+            Console.WriteLine("Press [S] to start as the Batman or [A] to start as The Joker");
         }
         //get players choice
         ConsoleKeyInfo key = Console.ReadKey();
         while (key.Key != ConsoleKey.S && key.Key != ConsoleKey.A)
         {
             Console.Clear();
-            Console.WriteLine("Invalid Choice! Please press [S] to start as Batman or [A] to start as Joker");
+            Console.WriteLine("Invalid Choice! Please press [S] to start as Batman or [A] to start as Joker!");
             key = Console.ReadKey();
         }
 
@@ -43,7 +39,7 @@ class Program
     //Method to handle game
     static void Main()
     {
-        while (true) 
+        while (true)
         {
 
             //Start the game
@@ -53,7 +49,7 @@ class Program
             Console.WriteLine("Press [R] to restart the game or press any other button to exit");
             if (Console.ReadKey().Key != ConsoleKey.R)
             {
-break;                   //Break the loop
+                break;                   //Break the loop
             }
 
             Console.Clear();
@@ -86,7 +82,7 @@ break;                   //Break the loop
             if (doubleDamage)
             {
                 player2Damage *= 2; // Double damage for Player 2
-                Console.WriteLine("The Joker used poison and does double damage!");
+                Console.WriteLine("The Joker used his poison attack and does double damage!");
                 Console.WriteLine("");
                 doubleDamage = false;
             }
@@ -98,14 +94,14 @@ break;                   //Break the loop
             // Check if Batman uses his Gadget Attack
             if (player1GadgetAttack > 120)
             {
-            int gadgetDamage = GenerateRandomDamage();
-            player2HP -= gadgetDamage;
+                int gadgetDamage = GenerateRandomDamage();
+                player2HP -= gadgetDamage;
 
-            Console.WriteLine("The Batman uses his Gadget Attack and deals additional damage!");
-            Console.WriteLine("");
-            Console.WriteLine($"The Joker takes {gadgetDamage} extra damage!");
+                Console.WriteLine("The Batman uses his Gadget Attack and deals additional damage!");
+                Console.WriteLine("");
+                Console.WriteLine($"The Joker takes {gadgetDamage} extra damage!");
 
-            Console.ReadLine();
+                Console.ReadLine();
             }
 
             //Health left
@@ -130,8 +126,8 @@ break;                   //Break the loop
                 Console.WriteLine("");
             }
         }
-         //Display results of game
-         DisplayResult(player1HP, player2HP, playerName);
+        //Display results of game
+        DisplayResult(player1HP, player2HP, playerName);
     }
 
     //Display players stats
@@ -154,27 +150,15 @@ break;                   //Break the loop
 
         if (player1HP <= 0)
         {
-            Console.WriteLine($"{playerName} lost to The Joker... unfortunately the Joker was to powerful");
+            Console.WriteLine($"{playerName}, Batman lost to The Joker");
         }
         else if (player2HP <= 0)
         {
-            Console.WriteLine($"{playerName} lost to Batman... Unlucky");
+            Console.WriteLine($"{playerName}, Joker lost to Batman");
         }
         else
         {
             Console.WriteLine($"It's a draw... try again");
         }
-    }
-
-    static void DisplayResults()
-    {
-         
-         Console.WriteLine("Game Results: ");
-         Console.Clear();
-
-         foreach (var result in gameResults)
-         {
-            Console.WriteLine(result);
-         }
     }
 }
